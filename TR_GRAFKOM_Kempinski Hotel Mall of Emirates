@@ -1,0 +1,246 @@
+#include <windows.h>
+#ifdef __APPLE__
+#include <GLUT/glut.h>
+#else
+#include <GL/glut.h>
+#endif
+
+#include <stdlib.h>
+
+void init(void);
+void display(void);
+void keyboard(unsigned char, int, int);
+void mouse(int button, int state, int x, int y);
+void ukuran(int, int);
+void mousemotion(int x, int y);
+
+double zoom=2;
+float xrot=0.0;
+float yrot=0.0;
+float xdiff=0.0;
+float ydiff=0.0;
+bool mousedown = false;
+
+int is_depth;
+
+int main(int argc, char **argv)
+{
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
+    glutInitWindowSize(800,600);
+    glutInitWindowPosition(250,80);
+    glutCreateWindow("Kempinski Hotel Mall of Emirates");
+    init();
+    glutDisplayFunc(display);
+    glutKeyboardFunc(keyboard);
+    glutMouseFunc(mouse);
+    glutMotionFunc(mousemotion);
+    glutIdleFunc(display);
+
+    glutReshapeFunc(ukuran);
+    glutMainLoop();
+    return 0;
+}
+
+void init(void)
+{
+    glClearColor(0.0,0.0,0.0,0.0);
+    glMatrixMode(GL_PROJECTION);
+    glEnable(GL_COLOR_MATERIAL);
+    glEnable(GL_DEPTH_TEST);
+    is_depth=1;
+    glMatrixMode(GL_MODELVIEW);
+    glPointSize(9.0);
+    glLineWidth(6.0);
+}
+
+void display(void)
+{
+    if(is_depth)
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    else
+        glClear(GL_COLOR_BUFFER_BIT);
+
+    glLoadIdentity();
+    gluLookAt(0.0, 0.0, 3.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);//untuk mengatur penglihatan mata/penglihatan objek
+    glRotatef(xrot, 1.0, 0.0, 0.0);
+    glRotatef(yrot, 0.0, 1.0, 0.0);
+    glPushMatrix();
+
+    //kanopi
+    glBegin(GL_QUADS);
+        glColor3f(1.0,228/255.0,100/255.0);
+        //atas
+        glVertex3f(-19.0,-10.0,20.0);
+        glVertex3f(19.0,-10.0,20.0);
+        glVertex3f(19.0,-10.0,10.0);
+        glVertex3f(-19.0,-10.0,10.0);
+        //depan
+        glVertex3f(-19.0,-10.0,20.0);
+        glVertex3f(19.0,-10.0,20.0);
+        glVertex3f(19.0,-20.0,20.0);
+        glVertex3f(-19.0,-20.0,20.0);
+        //kanan
+        glVertex3f(19.0,-10.0,20.0);
+        glVertex3f(19.0,-10.0,10.0);
+        glVertex3f(19.0,-20.0,10.0);
+        glVertex3f(19.0,-20.0,20.0);
+        //kiri
+        glVertex3f(-19.0,-10.0,20.0);
+        glVertex3f(-19.0,-10.0,10.0);
+        glVertex3f(-19.0,-20.0,10.0);
+        glVertex3f(-19.0,-20.0,20.0);
+    glEnd();
+    //lubang kanopi depan
+    for(float a=0;a<=32;a+=4.0)
+    {
+        glBegin(GL_POLYGON);
+            glColor3f(0.0,0.0,0.0);
+            glVertex3f(-17.0+a,-20.0,20.1);
+            glVertex3f(-17.0+a,-14.0,20.1);
+            glVertex3f(-16.5+a,-13.0,20.1);
+            glVertex3f(-16.0+a,-12.5,20.1);
+            glVertex3f(-15.5+a,-13.0,20.1);
+            glVertex3f(-15.0+a,-14.0,20.1);
+            glVertex3f(-15.0+a,-20.0,20.1);
+        glEnd();
+    }
+    //lubang kanopi kanan
+    for(float a=0;a<=6;a+=3.0)
+    {
+        glBegin(GL_POLYGON);
+            glColor3f(0.0,0.0,0.0);
+            glVertex3f(19.1,-20.0,19.0-a);
+            glVertex3f(19.1,-14.0,19.0-a);
+            glVertex3f(19.1,-13.0,18.5-a);
+            glVertex3f(19.1,-12.5,18.0-a);
+            glVertex3f(19.1,-13.0,17.5-a);
+            glVertex3f(19.1,-14.0,17.0-a);
+            glVertex3f(19.1,-20.0,17.0-a);
+        glEnd();
+    }
+    //lubang kanopi kiri
+    for(float a=0;a<=6;a+=3.0)
+    {
+        glBegin(GL_POLYGON);
+            glColor3f(0.0,0.0,0.0);
+            glVertex3f(-19.1,-20.0,19.0-a);
+            glVertex3f(-19.1,-14.0,19.0-a);
+            glVertex3f(-19.1,-13.0,18.5-a);
+            glVertex3f(-19.1,-12.5,18.0-a);
+            glVertex3f(-19.1,-13.0,17.5-a);
+            glVertex3f(-19.1,-14.0,17.0-a);
+            glVertex3f(-19.1,-20.0,17.0-a);
+        glEnd();
+    }
+
+    //gedung tinggi
+    glBegin(GL_QUADS);
+        glColor3f(1.0,228/255.0,145/255.0);
+        //atas
+        glVertex3f(-4.0,20.0,0.0);
+        glVertex3f(10.0,20.0,0.0);
+        glVertex3f(10.0,20.0,-10.0);
+        glVertex3f(-4.0,20.0,-10.0);
+        //depan
+        glVertex3f(-4.0,20.0,0.0);
+        glVertex3f(10.0,20.0,0.0);
+        glVertex3f(10.0,-20.0,0.0);
+        glVertex3f(-4.0,-20.0,0.0);
+        //belakang
+        glVertex3f(-4.0,20.0,-10.0);
+        glVertex3f(10.0,20.0,-10.0);
+        glVertex3f(10.0,-20.0,-10.0);
+        glVertex3f(-4.0,-20.0,-10.0);
+        //kanan
+        glVertex3f(10.0,20.0,0.0);
+        glVertex3f(10.0,20.0,-10.0);
+        glVertex3f(10.0,-20.0,-10.0);
+        glVertex3f(10.0,-20.0,0.0);
+        //kiri
+        glVertex3f(-4.0,20.0,0.0);
+        glVertex3f(-4.0,20.0,-10.0);
+        glVertex3f(-4.0,-20.0,-10.0);
+        glVertex3f(-4.0,-20.0,0.0);
+    glEnd();
+    //jendela gedung tinggi
+    for(float b=0.0;b<=24;b+=3.0)
+    {
+        for(float a=0.0;a<=8.0;a+=4.0)
+        {
+            glBegin(GL_POLYGON);
+                glColor3f(0.0,0.0,0.0);
+                glVertex3f(-2.0+a,18.0-b,0.1);
+                glVertex3f(-2.0+a,16.0-b,0.1);
+                glVertex3f(0.0+a,16.0-b,0.1);
+                glVertex3f(0.0+a,18.0-b,0.1);
+            glEnd();
+        }
+    }
+
+
+
+    glPopMatrix();
+    glutSwapBuffers();
+}
+
+void keyboard(unsigned char key, int x, int y)
+{
+    switch (key)
+    {
+    case '5': //transparansi objek
+        if(is_depth)
+        {
+            is_depth=0;
+            glDisable(GL_DEPTH_TEST);
+        }else
+        {
+            is_depth=1;
+            glEnable(GL_DEPTH_TEST);
+        }
+    }
+    display();
+}
+
+void idle()
+{
+    if(!mousedown)
+    {
+        xrot+=0.3;
+        yrot+=0.4;
+    }
+    glutPostRedisplay();
+}
+
+void mouse(int button, int state, int x, int y)
+{
+    if(button==GLUT_LEFT_BUTTON && state==GLUT_DOWN)
+    {
+        mousedown=true;
+        xdiff=x-yrot;
+        ydiff=-y+xrot;
+    }
+    else
+    mousedown=false;
+}
+
+void mousemotion(int x, int y)
+{
+    if(mousedown)
+    {
+        yrot=x-xdiff;
+        xrot=y+ydiff;
+
+        glutPostRedisplay();
+    }
+}
+
+void ukuran(int lebar, int tinggi)
+{
+    if(tinggi==0) tinggi=1;
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluPerspective(50.0,lebar/tinggi,5.0,500.0);
+    glTranslatef(0.0,-5.0,-150.0);
+    glMatrixMode(GL_MODELVIEW);
+}
