@@ -147,7 +147,7 @@ void display(void)
 
     //gedung tinggi
     glBegin(GL_QUADS);
-        glColor3f(130/255.0, 116/255.0, 78/255.0);
+        glColor3f(212/255.0, 199/255.0, 161/255.0);
         //atas
         glVertex3f(0.0,40.0,0.0);
         glVertex3f(14.0,40.0,0.0);
@@ -231,7 +231,7 @@ void display(void)
     }
     //atas gedung tinggi
     glBegin(GL_QUADS);
-        glColor3f(130/255.0, 116/255.0, 78/255.0);
+        glColor3f(212/255.0, 199/255.0, 161/255.0);
         //atas
         glVertex3f(2.0,50.0,-2.0);
         glVertex3f(12.0,50.0,-2.0);
@@ -316,7 +316,7 @@ void display(void)
     }
     //kiri gedung tinggi
     glBegin(GL_QUADS);
-        glColor3f(130/255.0, 116/255.0, 78/255.0);
+        glColor3f(212/255.0, 199/255.0, 161/255.0);
         //atas
         glVertex3f(0.0,20.0,0.0);
         glVertex3f(-22.0,20.0,0.0);
