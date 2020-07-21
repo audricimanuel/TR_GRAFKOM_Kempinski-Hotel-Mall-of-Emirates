@@ -189,7 +189,7 @@ void display(void)
         }
     }
     //jendela belakang - gedung tinggi
-    for(float b=0.0;b<=36;b+=3.0)
+    /*for(float b=0.0;b<=36;b+=3.0)
     {
         for(float a=0.0;a<=12.0;a+=4.0)
         {
@@ -201,7 +201,7 @@ void display(void)
                 glVertex3f(4.0+a,38.0-b,-20.1);
             glEnd();
         }
-    }
+    }*/
     //jendela kanan - gedung tinggi
     for(float b=0.0;b<=36;b+=3.0)
     {
@@ -274,7 +274,7 @@ void display(void)
         }
     }
     //jendela belakang - atas gedung tinggi
-    for(float b=0.0;b<=8;b+=4)
+    /*for(float b=0.0;b<=8;b+=4)
     {
         for(float a=0.0;a<=8.0;a+=4.0)
         {
@@ -286,7 +286,7 @@ void display(void)
                 glVertex3f(6.0+a,48.0-b,-18.1);
             glEnd();
         }
-    }
+    }*/
     //jendela kanan - atas gedung tinggi
     for(float b=0.0;b<=8;b+=4)
     {
@@ -359,7 +359,7 @@ void display(void)
         }
     }
     //jendela belakang - kiri gedung tinggi
-    for(float b=0.0;b<=18;b+=3.0)
+    /*for(float b=0.0;b<=18;b+=3.0)
     {
         for(float a=0.0;a<=16.0;a+=4.0)
         {
@@ -371,7 +371,7 @@ void display(void)
                 glVertex3f(-18.0+a,29.0-b,-20.1);
             glEnd();
         }
-    }
+    }*/
     //depan kanan gedung tinggi
     glBegin(GL_QUADS);
         glColor3f(212/255.0, 199/255.0, 161/255.0);
@@ -401,7 +401,20 @@ void display(void)
         glVertex3f(9.0,-20.0,10.0);
         glVertex3f(9.0,-20.0,0.0);
     glEnd();
-    
+    //jendela depan - depan kanan gedung tinggi
+    for(float b=0.0;b<=36;b+=6.0)
+    {
+        for(float a=0.0;a<=12.0;a+=4.0)
+        {
+            glBegin(GL_POLYGON);
+                glColor3f(0.0,0.0,0.0);
+                glVertex3f(11.0+a,13.0-b,10.1);
+                glVertex3f(11.0+a,9.0-b,10.1);
+                glVertex3f(13.0+a,9.0-b,10.1);
+                glVertex3f(13.0+a,13.0-b,10.1);
+            glEnd();
+        }
+    }
 
     glPopMatrix();
     glutSwapBuffers();
