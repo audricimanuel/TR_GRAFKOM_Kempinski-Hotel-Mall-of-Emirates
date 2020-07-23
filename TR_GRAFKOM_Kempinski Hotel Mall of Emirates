@@ -188,20 +188,7 @@ void display(void)
             glEnd();
         }
     }
-    //jendela belakang - gedung tinggi
-    /*for(float b=0.0;b<=36;b+=3.0)
-    {
-        for(float a=0.0;a<=12.0;a+=4.0)
-        {
-            glBegin(GL_POLYGON);
-                glColor3f(0.0,0.0,0.0);
-                glVertex3f(2.0+a,38.0-b,-20.1);
-                glVertex3f(2.0+a,36.0-b,-20.1);
-                glVertex3f(4.0+a,36.0-b,-20.1);
-                glVertex3f(4.0+a,38.0-b,-20.1);
-            glEnd();
-        }
-    }*/
+
     //jendela kanan - gedung tinggi
     for(float b=0.0;b<=36;b+=3.0)
     {
@@ -217,7 +204,7 @@ void display(void)
         }
     }
     //jendela kiri - gedung tinggi
-    for(float b=0.0;b<=36;b+=3.0)
+    for(float b=0.0;b<=6;b+=3.0)
     {
         for(float a=0.0;a<=16.0;a+=4.0)
         {
@@ -260,7 +247,7 @@ void display(void)
         glVertex3f(2.0,40.0,-2.0);
     glEnd();
     //jendela depan - atas gedung tinggi
-    for(float b=0.0;b<=8;b+=4)
+    for(float b=0.0;b<=4;b+=4)
     {
         for(float a=0.0;a<=8.0;a+=4.0)
         {
@@ -288,7 +275,7 @@ void display(void)
         }
     }*/
     //jendela kanan - atas gedung tinggi
-    for(float b=0.0;b<=8;b+=4)
+    for(float b=0.0;b<=4;b+=4)
     {
         for(float a=0.0;a<=12.0;a+=4.0)
         {
@@ -302,7 +289,7 @@ void display(void)
         }
     }
     //jendela kiri - atas gedung tinggi
-    for(float b=0.0;b<=8;b+=4)
+    for(float b=0.0;b<=4;b+=4)
     {
         for(float a=0.0;a<=12.0;a+=4.0)
         {
@@ -320,58 +307,101 @@ void display(void)
         glColor3f(212/255.0, 199/255.0, 161/255.0);
         //atas
         glVertex3f(0.0,30.0,0.0);
-        glVertex3f(-22.0,30.0,0.0);
-        glVertex3f(-22.0,30.0,-20.0);
+        glVertex3f(-27.0,30.0,0.0);
+        glVertex3f(-27.0,30.0,-20.0);
         glVertex3f(0.0,30.0,-20.0);
         //depan
         glVertex3f(0.0,30.0,0.0);
-        glVertex3f(-22.0,30.0,0.0);
-        glVertex3f(-22.0,-20.0,0.0);
+        glVertex3f(-27.0,30.0,0.0);
+        glVertex3f(-27.0,-20.0,0.0);
         glVertex3f(0.0,-20.0,0.0);
         //belakang
         glVertex3f(0.0,30.0,-20.0);
-        glVertex3f(-22.0,30.0,-20.0);
-        glVertex3f(-22.0,-20.0,-20.0);
+        glVertex3f(-27.0,30.0,-20.0);
+        glVertex3f(-27.0,-20.0,-20.0);
         glVertex3f(0.0,-20.0,-20.0);
         //kiri
-        glVertex3f(-22.0,30.0,0.0);
-        glVertex3f(-22.0,30.0,-20.0);
-        glVertex3f(-22.0,-20.0,-20.0);
-        glVertex3f(-22.0,-20.0,0.0);
+        glVertex3f(-27.0,30.0,0.0);
+        glVertex3f(-27.0,30.0,-20.0);
+        glVertex3f(-27.0,-20.0,-20.0);
+        glVertex3f(-27.0,-20.0,0.0);
         //kanan
         glVertex3f(0.0,30.0,0.0);
         glVertex3f(0.0,30.0,-20.0);
         glVertex3f(0.0,-20.0,-20.0);
         glVertex3f(0.0,-20.0,0.0);
+
+        //kirinya lagi
+        //atas
+        glVertex3f(-54.0,30.0,-7.0);
+        glVertex3f(-27.0,30.0,-7.0);
+        glVertex3f(-27.0,30.0,-20.0);
+        glVertex3f(-54.0,30.0,-20.0);
+        //depan
+        glVertex3f(-54.0,30.0,-7.0);
+        glVertex3f(-27.0,30.0,-7.0);
+        glVertex3f(-27.0,-20.0,-7.0);
+        glVertex3f(-54.0,-20.0,-7.0);
+        //belakang
+        glVertex3f(-54.0,30.0,-20.0);
+        glVertex3f(-27.0,30.0,-20.0);
+        glVertex3f(-27.0,-20.0,-20.0);
+        glVertex3f(-54.0,-20.0,-20.0);
+        //kiri
+        glVertex3f(-27.0,30.0,-7.0);
+        glVertex3f(-27.0,30.0,-20.0);
+        glVertex3f(-27.0,-20.0,-20.0);
+        glVertex3f(-27.0,-20.0,-7.0);
+        //kanan
+        glVertex3f(-54.0,30.0,-7.0);
+        glVertex3f(-54.0,30.0,-20.0);
+        glVertex3f(-54.0,-20.0,-20.0);
+        glVertex3f(-54.0,-20.0,-7.0);
     glEnd();
     //jendela depan - kiri gedung tinggi
     for(float b=0.0;b<=27;b+=3.0)
     {
-        for(float a=0.0;a<=16.0;a+=4.0)
+        for(float a=0.0;a<=20.0;a+=4.0)
         {
             glBegin(GL_POLYGON);
                 glColor3f(0.0,0.0,0.0);
-                glVertex3f(-20.0+a,29.0-b,0.1);
-                glVertex3f(-20.0+a,27.0-b,0.1);
-                glVertex3f(-18.0+a,27.0-b,0.1);
-                glVertex3f(-18.0+a,29.0-b,0.1);
+                glVertex3f(-25.0+a,29.0-b,0.1);
+                glVertex3f(-25.0+a,27.0-b,0.1);
+                glVertex3f(-23.0+a,27.0-b,0.1);
+                glVertex3f(-23.0+a,29.0-b,0.1);
             glEnd();
         }
     }
-    //jendela belakang - kiri gedung tinggi
-    /*for(float b=0.0;b<=18;b+=3.0)
-    {
-        for(float a=0.0;a<=16.0;a+=4.0)
-        {
-            glBegin(GL_POLYGON);
-                glColor3f(0.0,0.0,0.0);
-                glVertex3f(-20.0+a,29.0-b,-20.1);
-                glVertex3f(-20.0+a,27.0-b,-20.1);
-                glVertex3f(-18.0+a,27.0-b,-20.1);
-                glVertex3f(-18.0+a,29.0-b,-20.1);
-            glEnd();
-        }
-    }*/
+    //kanan gedung tinggi
+    glBegin(GL_QUADS);
+        glColor3f(212/255.0, 199/255.0, 161/255.0);
+        //atas
+        glVertex3f(18.0,27.0,-9.0);
+        glVertex3f(45.0,27.0,-9.0);
+        glVertex3f(45.0,27.0,-20.0);
+        glVertex3f(18.0,27.0,-20.0);
+        //depan
+        glVertex3f(18.0,27.0,-9.0);
+        glVertex3f(45.0,27.0,-9.0);
+        glVertex3f(45.0,-20.0,-9.0);
+        glVertex3f(18.0,-20.0,-9.0);
+        //belakang
+        glVertex3f(18.0,27.0,-20.0);
+        glVertex3f(45.0,27.0,-20.0);
+        glVertex3f(45.0,-20.0,-20.0);
+        glVertex3f(18.0,-20.0,-20.0);
+        //kiri
+        glVertex3f(45.0,27.0,-9.0);
+        glVertex3f(45.0,27.0,-20.0);
+        glVertex3f(45.0,-20.0,-20.0);
+        glVertex3f(45.0,-20.0,-9.0);
+        //kanan
+        glVertex3f(18.0,27.0,-9.0);
+        glVertex3f(18.0,27.0,-20.0);
+        glVertex3f(18.0,-20.0,-20.0);
+        glVertex3f(18.0,-20.0,-9.0);
+    glEnd();
+
     //depan kanan gedung tinggi
     glBegin(GL_QUADS);
         glColor3f(212/255.0, 199/255.0, 161/255.0);
@@ -400,9 +430,36 @@ void display(void)
         glVertex3f(9.0,15.0,10.0);
         glVertex3f(9.0,-20.0,10.0);
         glVertex3f(9.0,-20.0,0.0);
+
+        //belakangnya
+        //atas
+        glVertex3f(18.0,15.0,0.0);
+        glVertex3f(27.0,15.0,0.0);
+        glVertex3f(27.0,15.0,-9.0);
+        glVertex3f(18.0,15.10,-9.0);
+        //depan
+        glVertex3f(18.0,15.0,0.0);
+        glVertex3f(27.0,15.0,0.0);
+        glVertex3f(27.0,-20.0,0.0);
+        glVertex3f(18.0,-20.0,0.0);
+        //belakang
+        glVertex3f(18.0,15.0,-9.0);
+        glVertex3f(27.0,15.0,-9.0);
+        glVertex3f(27.0,-20.0,-9.0);
+        glVertex3f(18.0,-20.0,-9.0);
+        //kanan
+        glVertex3f(27.0,15.0,0.0);
+        glVertex3f(27.0,15.0,-9.0);
+        glVertex3f(27.0,-20.0,-9.0);
+        glVertex3f(27.0,-20.0,0.0);
+        //kiri
+        glVertex3f(18.0,15.0,0.0);
+        glVertex3f(18.0,15.0,-9.0);
+        glVertex3f(18.0,-20.0,-9.0);
+        glVertex3f(18.0,-20.0,0.0);
     glEnd();
     //jendela depan - depan kanan gedung tinggi
-    for(float b=0.0;b<=36;b+=6.0)
+    for(float b=0.0;b<=18;b+=6.0)
     {
         for(float a=0.0;a<=12.0;a+=4.0)
         {
@@ -412,6 +469,50 @@ void display(void)
                 glVertex3f(11.0+a,9.0-b,10.1);
                 glVertex3f(13.0+a,9.0-b,10.1);
                 glVertex3f(13.0+a,13.0-b,10.1);
+            glEnd();
+        }
+    }
+
+    //depan kiri gedung tinggi
+    glBegin(GL_QUADS);
+        glColor3f(212/255.0, 199/255.0, 161/255.0);
+        //atas
+        glVertex3f(-9.0,15.0,0.0);
+        glVertex3f(-27.0,15.0,0.0);
+        glVertex3f(-27.0,15.0,10.0);
+        glVertex3f(-9.0,15.10,10.0);
+        //depan
+        glVertex3f(-9.0,15.0,0.0);
+        glVertex3f(-27.0,15.0,0.0);
+        glVertex3f(-27.0,-20.0,0.0);
+        glVertex3f(-9.0,-20.0,0.0);
+        //belakang
+        glVertex3f(-9.0,15.0,10.0);
+        glVertex3f(-27.0,15.0,10.0);
+        glVertex3f(-27.0,-20.0,10.0);
+        glVertex3f(-9.0,-20.0,10.0);
+        //kanan
+        glVertex3f(-27.0,15.0,0.0);
+        glVertex3f(-27.0,15.0,10.0);
+        glVertex3f(-27.0,-20.0,10.0);
+        glVertex3f(-27.0,-20.0,0.0);
+        //kiri
+        glVertex3f(-9.0,15.0,0.0);
+        glVertex3f(-9.0,15.0,10.0);
+        glVertex3f(-9.0,-20.0,10.0);
+        glVertex3f(-9.0,-20.0,0.0);
+    glEnd();
+    //jendela depan - depan kiri gedung tinggi
+    for(float b=0.0;b<=18;b+=6.0)
+    {
+        for(float a=0.0;a<=12.0;a+=4.0)
+        {
+            glBegin(GL_POLYGON);
+                glColor3f(0.0,0.0,0.0);
+                glVertex3f(-11.0-a,13.0-b,10.1);
+                glVertex3f(-11.0-a,9.0-b,10.1);
+                glVertex3f(-13.0-a,9.0-b,10.1);
+                glVertex3f(-13.0-a,13.0-b,10.1);
             glEnd();
         }
     }
