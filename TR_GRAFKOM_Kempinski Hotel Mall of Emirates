@@ -1,3 +1,5 @@
+#include<cmath>
+#include<math.h>
 #include <windows.h>
 #ifdef __APPLE__
 #include <GLUT/glut.h>
@@ -6,7 +8,7 @@
 #endif
 
 #include <stdlib.h>
-
+#define M_PHI 3.14
 #define RATIO 1.200 //mendefinisikan rasio dengan perbandingan 1:1.200
 
 int lwindow; //lebar window (pixel)
@@ -17,6 +19,10 @@ void keyboard(unsigned char, int, int);
 void mouse(int button, int state, int x, int y);
 void ukuran(int, int);
 void mousemotion(int x, int y);
+void lingkaran(void);
+void timer(int t);
+void ngon(int n, int cx, int cy, int r);
+int l=0;
 
 double zoom=2;
 float xrot=0.0;
@@ -55,14 +61,17 @@ int main(int argc, char **argv)
 
 void init(void)
 {
-    glClearColor(0.0,0.0,0.0,0.0);
+    glClearColor(0.0,0.3,0.5,0.0);
     glMatrixMode(GL_PROJECTION);
     glEnable(GL_LIGHTING);
     glEnable(GL_COLOR_MATERIAL);
     glEnable(GL_LIGHT0);
     glEnable(GL_DEPTH_TEST);
     is_depth=1;
+
+    glutTimerFunc(10000,timer,0);
     glMatrixMode(GL_MODELVIEW);
+
     glPointSize(9.0);
     glLineWidth(6.0);
     glViewport(0,0,lwindow,twindow);
@@ -80,6 +89,7 @@ void display(void)
     glRotatef(xrot, 1.0, 0.0, 0.0);
     glRotatef(yrot, 0.0, 1.0, 0.0);
     glPushMatrix();
+    lingkaran();
 
     //kanopi
     glBegin(GL_QUADS);
@@ -1071,6 +1081,38 @@ void display(void)
     glEnd();
     glPopMatrix();
     glutSwapBuffers();
+}
+
+void ngon(int n, int cx, int cy, int r)
+{
+    float a,x,y;
+    //glColor4ub(i,j,0,200);
+    glBegin(GL_POLYGON);
+        a=6.28/n;
+        for (int i=0; i<n; i++)
+        {
+            x = (cx + r) * cos(i*a);
+            y = (cy + r) * sin(i*a);
+            glVertex2d(x,y);
+        }
+    glEnd();
+}
+
+void lingkaran(void)
+{
+    glPushMatrix();
+    glColor3f(l-=1.0,0.7,0.0);
+    glRotatef(l+=30.0,0.0,0.0,-80.0);
+    glTranslated(80,-40,-80.0);
+    ngon(100,0,0,10);
+    glPopMatrix();
+    glEnd();
+}
+
+void timer(int t)
+{
+    glutPostRedisplay();
+    glutTimerFunc(10000,timer,0);
 }
 
 void keyboard(unsigned char key, int x, int y)
