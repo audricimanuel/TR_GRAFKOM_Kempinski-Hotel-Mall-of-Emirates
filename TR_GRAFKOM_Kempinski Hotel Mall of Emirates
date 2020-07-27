@@ -85,10 +85,11 @@ void display(void)
         glClear(GL_COLOR_BUFFER_BIT);
 
     glLoadIdentity();
-    gluLookAt(0.0, 0.0, 20.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);//untuk mengatur penglihatan mata/penglihatan objek
+    gluLookAt(-4.5, 0.0, 20.0, -4.5, 0.0, 0.0, 0.0, 1.0, 0.0);//untuk mengatur penglihatan mata/penglihatan objek
     glRotatef(xrot, 1.0, 0.0, 0.0);
     glRotatef(yrot, 0.0, 1.0, 0.0);
     glPushMatrix();
+    //timer & transformasi = matahari
     lingkaran();
 
     //kanopi
@@ -1078,6 +1079,87 @@ void display(void)
         glVertex3f(4.0,-10.0,0.1);
         glVertex3f(-4.0,-10.0,0.1);
         glVertex3f(-4.0,-20.0,0.1);
+    glEnd();
+
+    //perpotongan garis
+    float a1x=-70, a1y=-20.1, a1z=22, b1x=60, b1y=-20.1, b1z=22;
+    float a2x=60, a2y=-20.1, a2z=22, b2x=60, b2y=-20.1, b2z=-22;
+    float a3x=60, a3y=-20.1, a3z=-22, b3x=-70, b3y=-20.1, b3z=-22;
+    float a4x=-70, a4y=-20.1, a4z=-22, b4x=-70, b4y=-20.1, b4z=22;
+    float mab1, mab2, mab3, mab4;
+    float cab1, cab2, cab3, cab4;
+    float px12, py12, px23, py23, px34, py34, px41, py41;
+    glLineWidth(1.0);
+
+//GARIS
+    //1
+    glBegin(GL_LINES);
+        glColor3f(0.0, 1.0, 0.0);
+        glVertex3f(a1x,a1y,a1z);
+        glVertex3f(b1x,b1y,b1z);
+    glEnd();
+    //2
+    glBegin(GL_LINES);
+        glColor3f(0.0, 1.0, 0.0);
+        glVertex3f(a2x,a2y,a2z);
+        glVertex3f(b2x,b2y,b2z);
+    glEnd();
+    //3
+    glBegin(GL_LINES);
+        glColor3f(0.0, 1.0, 0.0);
+        glVertex3f(a3x,a3y,a3z);
+        glVertex3f(b3x,b3y,b3z);
+    glEnd();
+    //4
+    glBegin(GL_LINES);
+        glColor3f(0.0, 1.0, 0.0);
+        glVertex3f(a4x,a4y,a4z);
+        glVertex3f(b4x,b4y,b4z);
+    glEnd();
+
+//RUMUS PERPOTONGAN
+    mab1=(b1y-a1y)/(b1x-a1x);
+    mab2=(b2y-a2y)/(b2x-a2x);
+    mab3=(b3y-a3y)/(b3x-a3x);
+    mab4=(b4y-a4y)/(b4x-a4x);
+    cab1=a1y-(a1x*mab1);
+    cab2=a2y-(a2x*mab2);
+    cab3=a3y-(a3x*mab3);
+    cab4=a4y-(a4x*mab4);
+
+//POTONG = 12, 23, 34, 41
+    px12=(cab2-cab1)/(mab1-mab2);
+    py12=(mab1*px12)+cab1;
+    px23=(cab3-cab2)/(mab2-mab3);
+    py23=(mab2*px23)+cab2;
+    px34=(cab4-cab3)/(mab3-mab4);
+    py34=(mab3*px34)+cab3;
+    px41=(cab1-cab4)/(mab4-mab1);
+    py41=(mab4*px41)+cab4;
+
+//HASIL
+    glBegin(GL_POINTS);
+        glColor3f(0.0, 0.0, 0.0);
+        glVertex3f(px12,py12,22.0);
+    glEnd();
+    glBegin(GL_POINTS);
+        glColor3f(0.0, 0.0, 0.0);
+        glVertex3f(px23,py23,-22.0);
+    glEnd();
+    glBegin(GL_POINTS);
+        glColor3f(0.0, 0.0, 0.0);
+        glVertex3f(px34,py34,-22.0);
+    glEnd();
+    glBegin(GL_POINTS);
+        glColor3f(0.0, 0.0, 0.0);
+        glVertex3f(px41,py41,22.0);
+    glEnd();
+    glBegin(GL_QUADS);
+        glColor3f(0.0,1.0,0.0);
+        glVertex3f(a1x,a1y,a1z);
+        glVertex3f(a2x,a2y,a2z);
+        glVertex3f(a3x,a3y,a3z);
+        glVertex3f(a4x,a4y,a4z);
     glEnd();
     glPopMatrix();
     glutSwapBuffers();
